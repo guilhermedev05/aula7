@@ -1,0 +1,17 @@
+{
+  "name": "aula7",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Guilherme",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "express": "^5.1.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.1.0"
+  }
+}
