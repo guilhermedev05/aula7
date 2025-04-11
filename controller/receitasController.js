@@ -56,7 +56,9 @@ function removerReceita(req, res){
     receitas = receitas.filter(receita => receita.id != req.params.id)
     salvarReceitas(receitas)
 
-    res.status(204)
+    // return res.status(204) | Antes | -> A requisição dá certo mas não envia nenhuma resposta
+    // Então a função fica sem fim, causando o timeout.
+    return res.status(204).send() // A requisição dá certo e envia a resposta (Através do send())
 }
 
 module.exports = {

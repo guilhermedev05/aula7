@@ -20,9 +20,9 @@ describe("API de Receitas", () => {
         expect(Array.isArray(res.body)).toBe(true)
     })
 
-    test("Deve retornar um array receita com id 1744330015445", async () => {
-        const res = await request(app).get("/api/receitas/1744330015445")
-        expect(res.body.id).toEqual(1744330015445)
+    test("Deve retornar um array receita com id 1744338003564", async () => {
+        const res = await request(app).get("/api/receitas/1744338003564")
+        expect(res.body.id).toEqual(1744338003564)
     })
 
     test("Deve retornar um array com nome: bolo de chocolate", async () => {
@@ -32,12 +32,12 @@ describe("API de Receitas", () => {
             modoPreparo: "Misture tudo e leve ao forno por 40 minutos.",
             tempoPreparo: 60
         }
-        const res = await request(app).put("/api/receitas/1744330015445").send(body)
+        const res = await request(app).put("/api/receitas/1744338003564").send(body)
         expect(res.body.nome).toEqual("Bolo de Chocolate")
     })
 
     test("Deve retornar receita não encontrada", async () => {
-        const res = await request(app).delete("/api/receitas/1744330015445")
+        const res = await request(app).delete("/api/receitas/1744338003564")
         
         expect(res.statusCode).toEqual(204)
     })
