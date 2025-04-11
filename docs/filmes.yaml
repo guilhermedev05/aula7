@@ -1,0 +1,133 @@
+openapi: 3.0.0
+info:
+  title: API de Filmes
+  version: 1.0.0
+  description: API para gerenciamento de filmes usando Node.js e JSON como base de dados.
+
+paths:
+  /api/filmes:
+    get:
+      summary: Lista todos os filmes
+      tags:
+        - Filmes
+      responses:
+        '200':
+          description: Lista de filmes retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Filme'
+    post:
+      summary: Adiciona um novo filme
+      tags:
+        - Filmes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NovoFilme'
+      responses:
+        '201':
+          description: Filme criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filme'
+
+  /api/filmes/{id}:
+    get:
+      summary: Retorna os detalhes de um filme específico
+      tags:
+        - Filmes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Filme encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filme'
+        '404':
+          description: Filme não encontrado
+
+    put:
+      summary: Atualiza um filme existente
+      tags:
+        - Filmes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NovoFilme'
+      responses:
+        '200':
+          description: Filme atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filme'
+        '404':
+          description: Filme não encontrado
+
+    delete:
+      summary: Remove um filme
+      tags:
+        - Filmes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Filme removido com sucesso
+        '404':
+          description: Filme não encontrado
+
+components:
+  schemas:
+    Filme:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        titulo:
+          type: string
+          example: O Senhor dos Anéis
+        diretor:
+          type: string
+          example: Peter Jackson
+        ano:
+          type: integer
+          example: 2001
+
+    NovoFilme:
+      type: object
+      required:
+        - titulo
+        - diretor
+        - ano
+      properties:
+        titulo:
+          type: string
+        diretor:
+          type: string
+        ano:
+          type: integer
